@@ -22,7 +22,7 @@ class Note(JsonSerializableAnkiObject):
 
     @staticmethod
     def get_notes_from_collection(collection, deck_id, note_models):
-        note_ids = collection.decks.get_note_ids(deck_id, include_from_dynamic=True)
+        note_ids = collection.decks.getNoteIds(deck_id, include_from_dynamic=True)
         return [Note.from_collection(collection, note_id, note_models) for note_id in note_ids]
 
     @classmethod
@@ -78,7 +78,7 @@ class Note(JsonSerializableAnkiObject):
             # todo process cancel
 
         # To get an updated note to work with
-        self.anki_object = AnkiNote.get_by_uuid(collection, self.get_uuid())
+        self.anki_object = AnkiNote.getByUUID(collection, self.get_uuid())
 
     def move_cards_to_deck(self, deck_id, move_from_dynamic_decks=False):
         """
@@ -90,7 +90,7 @@ class Note(JsonSerializableAnkiObject):
         """
         # Todo: consider move only when majority of cards are in a different deck.
         for card in self.anki_object.cards():
-            card.move_to_deck(deck_id, move_from_dynamic_decks)
+            card.moveToDeck(deck_id, move_from_dynamic_decks)
             card.flush()
 
     def save_to_collection(self, collection, deck, model_map_cache):
@@ -103,7 +103,7 @@ class Note(JsonSerializableAnkiObject):
         # ;(
         note_model.anki_dict["did"] = deck.anki_dict["id"]
 
-        self.anki_object = AnkiNote.get_by_uuid(collection, self.get_uuid())
+        self.anki_object = AnkiNote.getByUUID(collection, self.get_uuid())
         new_note = self.anki_object is None
         if new_note:
             self.anki_object = AnkiNote(collection, note_model.anki_dict)

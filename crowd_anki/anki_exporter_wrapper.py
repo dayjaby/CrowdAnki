@@ -35,4 +35,4 @@ class AnkiJsonExporterWrapper:
 
 anki.hooks.addHook("exportersList",
                    lambda exporters_list: exporters_list.append(
-                       anki.exporting.get_exporter_id(AnkiJsonExporterWrapper)))
+                       anki.exporting.getExporterId(AnkiJsonExporterWrapper)))

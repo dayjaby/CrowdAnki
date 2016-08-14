@@ -106,7 +106,7 @@ class Deck(JsonSerializableAnkiDict):
         anki_exporter = AnkiExporter(self.collection)
         model_ids = [model.anki_dict["id"] for model in self.metadata.models.values()]
 
-        return anki_exporter.get_files_for_models(model_ids, self.collection.media.dir())
+        return anki_exporter.getFilesForModels(model_ids, self.collection.media.dir())
 
     def _load_metadata_from_json(self, json_dict):
         if not self.metadata:
