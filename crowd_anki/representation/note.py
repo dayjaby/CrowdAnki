@@ -117,5 +117,5 @@ class Note(JsonSerializableAnkiObject):
 
         if new_note:
             collection.addNote(self.anki_object)
-        else:
-            self.move_cards_to_deck(deck.anki_dict["id"])
+#        else:
+#            self.move_cards_to_deck(deck.anki_dict["id"])
